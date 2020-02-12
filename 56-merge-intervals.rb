@@ -8,8 +8,7 @@ def merge(intervals)
     if last.nil?
       merged_intervals << curr
     elsif last[1] < curr[0] || curr[1] < last[0] # Last and curret are not overlapped
-      merged_intervals << last
-      merged_intervals << curr
+      merged_intervals << last << curr
     else # Last and curret are overlapped
       merged_intervals << [(last + curr).min, (last + curr).max]
     end
