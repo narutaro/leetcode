@@ -4,13 +4,13 @@ def merge(intervals)
   merged_intervals = []
 
   intervals.sort.each do |curr|
-    last = merged_intervals.pop
+    last = merged_intervals.last
     if last.nil?
       merged_intervals << curr
-    elsif last[1] < curr[0] || curr[1] < last[0] # Last and curret are not overlapped
-      merged_intervals << last << curr
+    elsif last[1] < curr[0]  # Last and curret are NOT overlapped
+      merged_intervals << curr
     else # Last and curret are overlapped
-      merged_intervals << [(last + curr).min, (last + curr).max]
+      last[1] = (last + curr).max
     end
   end
 
